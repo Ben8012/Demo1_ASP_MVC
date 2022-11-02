@@ -60,7 +60,7 @@ namespace Demo1_ASP_MVC.Controllers
             return View();
         }
 
-            [HttpPost]
+        [HttpPost]
         public IActionResult Register(UserRegisterViewModel registerViewModel)
         {
             if (!ModelState.IsValid)

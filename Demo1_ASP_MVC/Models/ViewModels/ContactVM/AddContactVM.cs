@@ -34,7 +34,6 @@ namespace Demo1_ASP_MVC.Models.ViewModels.ContactVM
 
 
         [Display(Name = "Date d'anniversaire")]
-        [Required(ErrorMessage = "Le Champ est requis.")]
         [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
 

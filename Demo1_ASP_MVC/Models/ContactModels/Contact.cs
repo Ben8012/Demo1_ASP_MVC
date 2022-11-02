@@ -25,6 +25,7 @@
         public string Phone { get; set; }
 
         public DateTime Birthdate { get; set; }
-        public bool Love { get; set; }
+        public int Follower { get; set; }
+        public int Followed { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace Demo1_ASP_MVC.Controllers
     {
         public IActionResult Index()
         {
-            return RedirectToAction(nameof(AddContact));
+            return RedirectToAction(nameof(ListContact));
         }
 
         public IActionResult AddContact()
@@ -38,7 +38,6 @@ namespace Demo1_ASP_MVC.Controllers
 
         public IActionResult ListContact()
         {
-
             ListContactVM listContact = new ListContactVM(FakeDB.Contacts.OrderBy(c => c.Id).ToList());
             
             return View(listContact);
@@ -78,12 +77,12 @@ namespace Demo1_ASP_MVC.Controllers
         [HttpPost]
         public IActionResult ModifyContact(AddContactVM form)
         {
-            Contact? contact = FakeDB.Contacts.SingleOrDefault(c => c.Id == form.Id, null);
-            if (contact == null)
-            {
-                throw new Exception("le contact n'existe pas !!");
-            }
+            if(!ModelState.IsValid) return View(form);
 
+            Contact? contact = FakeDB.Contacts.SingleOrDefault(c => c.Id == form.Id, null);
+
+            if (contact == null) throw new Exception("le contact n'existe pas !!");
+         
             FakeDB.Contacts.RemoveAll(c => c.Id ==form.Id);
 
             contact.Id = form.Id;
@@ -97,6 +96,7 @@ namespace Demo1_ASP_MVC.Controllers
             FakeDB.Contacts.Add(contact);
            
             ListContactVM listViewModel = new ListContactVM(FakeDB.Contacts);
+
             return RedirectToAction(nameof(ListContact), listViewModel);
         }
 
@@ -105,7 +105,7 @@ namespace Demo1_ASP_MVC.Controllers
         {
             Contact? contact = FakeDB.Contacts.SingleOrDefault(c => c.Id == id, null);
 
-            contact.Love = true;
+            contact.Follower = id;
 
             if (contact == null)
             {
@@ -127,7 +127,7 @@ namespace Demo1_ASP_MVC.Controllers
         {
             Contact? contact = FakeDB.Contacts.SingleOrDefault(c => c.Id == id, null);
 
-            contact.Love = false;
+            contact.Follower = 0;
 
             if (contact == null)
             {
