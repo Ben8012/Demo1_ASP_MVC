@@ -48,14 +48,11 @@ namespace Demo1_ASP_MVC.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-
-
-
             // ici remplir la session
             _sessionManager.Email = user.Email;
             _sessionManager.UserName = user.UserName;
             return RedirectToAction("Index", "Home");
-            return RedirectToAction("Index", "Home");
+            
         }
 
         public IActionResult Register()
