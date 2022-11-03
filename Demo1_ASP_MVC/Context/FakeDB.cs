@@ -31,6 +31,12 @@ namespace Demo1_ASP_MVC.Context
 
         };
 
+        public static List<MtmFollower> Followers { get; set; } = new List<MtmFollower>()
+        {
+            // new Contact(1,"Benjamin","Sterckx","Ben","ben@mail.com","0495/123456",new DateTime(1980,12,10))
+
+        };
+
 
     }
 

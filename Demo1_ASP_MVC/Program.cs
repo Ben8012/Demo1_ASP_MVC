@@ -1,3 +1,4 @@
+using DAL.Respository;
 using Demo1_ASP_MVC.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<ContactRepository>();
 
 builder.Services.AddSession(options =>
 {

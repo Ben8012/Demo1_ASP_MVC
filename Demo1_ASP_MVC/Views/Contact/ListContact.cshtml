@@ -1,4 +1,5 @@
 ﻿@using Demo1_ASP_MVC.Models.ContactModels
+@using D = DAL.Entities
 @model Demo1_ASP_MVC.Models.ViewModels.ContactVM.ListContactVM
 
 <div class="container  row">
@@ -22,7 +23,7 @@
             <br />
 
             <ul class ="d-flex flex-wrap justify-content-center list-unstyled ">
-                @foreach (Contact contact in Model.Contacts)
+                @foreach (D.Contact contact in Model.Contacts)
                 {
                     <li class="m-4">
                         <div class =" p-2 border border-dark rounded-2 w-200">
@@ -33,15 +34,20 @@
                             <h2>Téléphone : @contact.Phone</h2>
                             <h2>Email : @contact.Email</h2>
                             <h2>Date de naissance : @contact.Birthdate</h2>
-                    
-                            @if(contact.Follower == 0){
-                                <a 
-                                    class="btn btn-outline-success"
-                                    asp-route-id="@contact.Id"
-                                    asp-action="LoveContact">
-                                    J'aime
-                                </a>
-                            }
+@*
+                            @foreach(Contact follower in Model.Followers)
+                            {
+                                 @if(follower.FollowerId != contact.Id){
+                                    <a 
+                                        class="btn btn-outline-success"
+                                        asp-route-id="@contact.Id"
+                                        asp-action="LoveContact">
+                                        J'aime
+                                    </a>
+                                 }
+                            }*@
+                 
+                           
                            
                      
                     
@@ -68,13 +74,12 @@
 
     </div>
 
-    <div class ="col-3 text-center border-dark border-start">
+   @* <div class ="col-3 text-center border-dark border-start">
          <h1>Liste de mes preferences</h1>
         <ul class ="d-flex flex-wrap justify-content-center list-unstyled ">
-            @foreach (Contact contact in Model.Contacts)
+            @foreach (Contact contact in Model.Followers)
             {
-                if(contact.Follower == contact.Id)
-                {
+     
                     <li class="m-4">
                         <div class =" p-2 border border-dark rounded-2 w-200">
                             <h4>N° : @contact.Id</h4>
@@ -85,19 +90,24 @@
                             <h4>Email : @contact.Email</h4>
                             <h4>Date de naissance : @contact.Birthdate</h4>
                              
-                            <a 
-                                class="btn btn-outline-danger"
-                                asp-route-id="@contact.Id"
-                                asp-action="UnLoveContact">
-                                J'aime pas
-                            </a>
+                            @foreach(Contact follower in Model.Followers)
+                            {
+                                 @if(follower.FollowedId != 0){
+                                    <a 
+                                        class="btn btn-outline-danger"
+                                        asp-route-id="@contact.Id"
+                                        asp-action="UnLoveContact">
+                                        J'aime pas
+                                    </a>
+                                    }
+                            }
                             
                          </div>
                     </li>
-                }
+                
             }
           </ul>
-    </div>
+    </div>*@
 
     
 

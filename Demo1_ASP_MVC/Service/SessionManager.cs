@@ -10,6 +10,12 @@
             _session = contextAccessor.HttpContext.Session;
         }
 
+        public int Id
+        {
+            get { return (int)_session.GetInt32("Id"); } 
+            set { _session.SetInt32("Id", value); } 
+        }
+
         public string Email
         {
             get { return _session.GetString("Email"); }

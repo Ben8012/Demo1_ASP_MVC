@@ -49,6 +49,7 @@ namespace Demo1_ASP_MVC.Controllers
                 return View();
 
             // ici remplir la session
+            _sessionManager.Id = user.Id;
             _sessionManager.Email = user.Email;
             _sessionManager.UserName = user.UserName;
             return RedirectToAction("Index", "Home");
